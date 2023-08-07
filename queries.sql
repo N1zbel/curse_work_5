@@ -8,7 +8,7 @@ CREATE DATABASE vacancies_db;
 CREATE TABLE IF NOT EXISTS employers
 (
         id SERIAL PRIMARY KEY,
-        name VARCHAR(255),
+        company_name VARCHAR(255),
         url TEXT
 );
 

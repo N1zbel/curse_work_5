@@ -1,7 +1,7 @@
 import requests
 
 
-def get_vacancies(keyword, per_page=10):
+def get_vacancies(keyword, per_page):
     url = 'https://api.hh.ru/vacancies'
 
     params = {

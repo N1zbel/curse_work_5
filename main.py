@@ -9,10 +9,12 @@ PASS = os.getenv('pgadmin')
 
 def main():
     # Подключение к базе данных
-    db_manager = DBManager(host="localhost", database="vacancies", user='postgres', password=PASS)
+    db_manager = DBManager(host="localhost", database="vacancies_db", user='postgres', password=PASS)
 
     # Получение данных о вакансиях с hh.ru
-    vacancies = get_vacancies(input('Введите желаемую вакансию : '))
+    vacancy_name = (input('Введите запрос для поиска вакансий : '))
+    num_vacancies = int(input('Введите количество вакансий: '))
+    vacancies = get_vacancies(vacancy_name, num_vacancies)
 
     # Заполнение базы данных данными о работодателях и вакансиях
     for vacancy in vacancies:
@@ -25,9 +27,9 @@ def main():
         url = vacancy.get("apply_alternate_url", "")
         description = vacancy['snippet']['requirement']
         description = func_for_clear_text(str(description))
-        print(description)
 
         db_manager.insert_vacancy(employer_id, vacancy_title, vacancy_salary, description, url)
+    print('----------------------------')
     while True:
         user_input = input(
             'Для получения списка всех вакансий с указанием названия компании, названия вакансии ,зарплаты и ссылки на вакансию - введите "1"\n'

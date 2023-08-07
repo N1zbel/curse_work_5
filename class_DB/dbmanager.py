@@ -24,10 +24,10 @@ class DBManager:
     # Получает список всех компаний и количество вакансий у каждой компании.
     def get_companies_and_vacancies_count(self):
         self.cur.execute("""
-            SELECT employers.name, COUNT(vacancies.id) as vacancy_count
+            SELECT employers.company_name, COUNT(vacancies.id) as vacancy_count
             FROM employers
             LEFT JOIN vacancies ON employers.id = vacancies.employer_id
-            GROUP BY employers.name
+            GROUP BY employers.company_name
         """)
         return self.cur.fetchall()
 

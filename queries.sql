@@ -2,7 +2,7 @@
 CREATE DATABASE vacancies;
 
 -- Подключение к базе данных
-\c vacancies_db
+\c vacancies
 
 -- Создание таблицы работодателей
 CREATE TABLE IF NOT EXISTS employers

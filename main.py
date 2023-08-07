@@ -9,7 +9,7 @@ PASS = os.getenv('pgadmin')
 
 def main():
     # Подключение к базе данных
-    db_manager = DBManager(host="localhost", database="vacancies_db", user='postgres', password=PASS)
+    db_manager = DBManager(host="localhost", database="vacancies", user='postgres', password=PASS)
 
     # Получение данных о вакансиях с hh.ru
     vacancy_name = (input('Введите запрос для поиска вакансий : '))
@@ -44,36 +44,36 @@ def main():
             print("Все вакансии :")
             for vacancy in all_vacancies:
                 print(vacancy)
-            sleep(3)
+            timeout = input('Нажмите "enter" чтобы продолжить')
         elif user_input == '2':
             companies_and_vacancies = db_manager.get_companies_and_vacancies_count()
             print("Количество компаний и ваканский в них :")
             for vacancy in companies_and_vacancies:
                 print(vacancy)
-            sleep(3)
+            timeout = input('Нажмите "enter" чтобы продолжить')
         elif user_input == '3':
             avg_salary = db_manager.get_avg_salary()
             print("Средняя зарплата по всем вакансиям :", avg_salary)
-            sleep(3)
+            timeout = input('Нажмите "enter" чтобы продолжить')
         elif user_input == '4':
             high_salary_vacancies = db_manager.get_vacancies_with_higher_salary()
             print("Вакансии с зарплатой выше средней :")
             for vacancy in high_salary_vacancies:
                 print(vacancy)
-            sleep(3)
+            timeout = input('Нажмите "enter" чтобы продолжить')
         elif user_input == '5':
             keyword = input('Введите ключевое слово для поиска в вакансиях: ')
             keyword_vacancies = db_manager.get_vacancies_with_keyword(keyword)
             print(f"Вакансии по ключевому слову - {keyword}:")
             for vacancy in keyword_vacancies:
                 print(vacancy)
-            sleep(3)
+            timeout = input('Нажмите "enter" чтобы продолжить')
         elif user_input == '0':
             print('Программа завершена, всю информацию о вакансиях вы сможете посмотреть в таблице')
             break
         else:
             print('Неверный ввод')
-            sleep(3)
+            timeout = input('Нажмите "enter" чтобы продолжить')
 
     # Закрытие соединения с базой данных
     db_manager.close()

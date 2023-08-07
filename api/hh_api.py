@@ -4,6 +4,7 @@ import requests
 def get_vacancies(keyword, per_page):
     url = 'https://api.hh.ru/vacancies'
 
+
     params = {
         'text': keyword,
         'per_page': per_page,

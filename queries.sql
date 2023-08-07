@@ -1,5 +1,5 @@
 -- Создание базы данных
-CREATE DATABASE vacancies_db;
+CREATE DATABASE vacancies;
 
 -- Подключение к базе данных
 \c vacancies_db
